@@ -1,13 +1,14 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import CommentList from './CommentList'
 
 class Article extends Component {
     state = {
         isOpen: false,
-        isComment: false,
-        name: 'open'
+        isComment: false
     };
-
+    static propTypes = {  // статический атрибут proposal ES7
+        article: PropTypes.object.isRequired
+    };
 /*
     constructor(props) {
         super(props)
@@ -16,17 +17,16 @@ class Article extends Component {
         }
     }
 */
-
     render() {
         const article = this.props.article;
 //      const { article } = this.props
 //      const { article: { title, text } } = props
         const { isOpen } = this.state;
-        const body = isOpen ? <section>{ article.text }</section> : null
+        const body = isOpen ? <section>{ article.text }</section> : null;
         const {isComment} = this.state;
-        const bodyComment = isComment ? <section><CommentList comments = {article.comments} /></section> : null
-        let {name} = this.state;
-        name = this.state.isComment ? 'Close' : 'Open';
+        const bodyComment = isComment ? <section><CommentList comments = {article.comments} /></section> : null;
+
+        let name = this.state.isComment ? 'Close' : 'Open';
 
         return (
             <div>
@@ -38,33 +38,18 @@ class Article extends Component {
         )
     }
 
-    toggleOpen = (ev) => {
+    toggleOpen = (evt) => {
         this.setState({
             isOpen: !this.state.isOpen
         })
-    }
-    toggleComment = (ev) => {
-        ev.preventDefault();
+    };
+    toggleComment = (evt) => {
+        evt.preventDefault();
         this.setState({
             isComment: !this.state.isComment
         })
+    };
 }
-}
 
-
-
-/*
-function Article(props) {
-    const article = props.article
-//    const { article: { title, text } } = props
-
-    return (
-        <div>
-            <h1>{ article.title }</h1>
-            <section>{ article.text }</section>
-        </div>
-    )
-}
-*/
 
 export default Article

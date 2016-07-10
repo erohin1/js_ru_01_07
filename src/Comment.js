@@ -1,18 +1,23 @@
-import React, {Component} from 'react';
+import React, {PropTypes} from 'react';
 
 
-class Comment extends Component {
+function Comment(props) {
+    if(!props.comment) return <h3>Something</h3>;
+    const {comment: {user, text}} = props;
 
-    render() {
-        const {comment: {user, text}} = this.props;
-
-        return (
-            <div>
-                <span>{user}</span>
-                <p>{text}</p>
-            </div>
+    return (
+        <div>
+            <p>{ text }</p>
+            <b>{ user }</b>
+        </div>
         )
-    }
 }
+
+Comment.propTypes = {
+    comment: PropTypes.shape({
+        text: PropTypes.string.isRequired,
+        user: PropTypes.string
+    })
+};
 
 export default Comment;
