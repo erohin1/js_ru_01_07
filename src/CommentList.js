@@ -2,39 +2,30 @@
 
 import React, {Component} from 'react';
 import Comment from './Comment';
+import toggleOpen from './decorators/toggleOpen';
 
 
 class CommentList extends Component {
-    state = {
-        isOpen: false
-    };
+
     //в классе, св-ва объекту ставятся только в constructor
     //static console.log(this.props); // как вызвать ф-цию в теле класса?
-    tmp() {console.log(this);};
-    render() {
-        const {comments}  = this.props;
-        let linkText = comments && (this.state.isOpen ? 'Close comments' : 'Open comments');
-        const listItems = this.state.isOpen && comments ? comments.map((comment) =>
-            <li key = {comment.id}><Comment comment = {comment} /></li>) : null;
 
+    render() {
+        const {comments, isOpen, toggleComment}  = this.props;
+        if(!comments || !comments.length) return <h3>no comments yet</h3>;
+
+        const commentItems = comments.map(comment =>
+            <li key = {comment.id}><Comment comment = {comment} /></li>);
+        const body = isOpen ? <ul>{commentItems}</ul> : null;
+        const linkText = isOpen ? 'Close comments' : 'Open comments';
 
         return (
             <div>
-                <h3>Comment list</h3>
-                <ul>
-                    {listItems}
-                </ul>
-                <p><a href = '' onClick = {this.toggleComment}>{linkText}</a></p>
+                <p><a href = '#' onClick = {toggleComment}>{linkText}</a></p>
+                {body}
             </div>
         )
     }
-
-    toggleComment = (evt) => {
-        evt.preventDefault();
-        this.setState({
-            isOpen: !this.state.isOpen
-        })
-    };
 }
 
-export default CommentList
+export default toggleOpen(CommentList);
