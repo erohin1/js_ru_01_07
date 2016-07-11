@@ -18,7 +18,7 @@ export default (Component) => class DecoratedComponent extends React.Component {
             isOpen: !this.state.isOpen
         })
     };
-
+    //патерн reverse data flow - управление состоянием родительского компонента из дочернего
     render() {
         return <Component {...this.props} isOpen = {this.state.isOpen} toggleComment = {this.toggleComment} />;
     }
