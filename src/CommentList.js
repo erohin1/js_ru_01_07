@@ -11,8 +11,8 @@ class CommentList extends Component {
         console.log('--', this.props);
     }
     componentDidMount() {
-        console.log('--', 'mounted');
-    }
+        console.log('--', 'mounted', this.refs.toggler);
+    } //this.refs.toggler - native DOM-element
     componentWillReceiveProps(nextProps) {
         console.log('--WillReceiveProps', this.props, nextProps);
     }
@@ -33,7 +33,7 @@ class CommentList extends Component {
 
         return (
             <div>
-                <p><a href = '#' onClick = {toggleComment}>{linkText}</a></p>
+                <a href = '#' onClick = {toggleComment} ref = 'toggler'>{linkText}</a>
                 {body}
             </div>
         )
