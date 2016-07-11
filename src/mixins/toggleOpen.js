@@ -1,5 +1,6 @@
 export default {
     getInitialState() {
+        //this.props - есть доступ
         return {
             isOpen: false
         }

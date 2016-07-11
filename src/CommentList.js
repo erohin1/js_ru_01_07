@@ -7,6 +7,18 @@ import toggleOpen from './decorators/toggleOpen';
 
 class CommentList extends Component {
 
+    componentWillMount() {
+        console.log('--', this.props);
+    }
+    componentDidMount() {
+        console.log('--', 'mounted');
+    }
+    componentWillReceiveProps(nextProps) {
+        console.log('--WillReceiveProps', this.props, nextProps);
+    }
+    componentWillUnmount() { //для отписки при удалении компонента из DOM
+        console.log('--unmointing');
+    }
     //в классе, св-ва объекту ставятся только в constructor
     //static console.log(this.props); // как вызвать ф-цию в теле класса?
 
