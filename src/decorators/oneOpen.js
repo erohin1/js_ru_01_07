@@ -9,11 +9,11 @@ export default (Component) => class decoratedOneOpen extends ReactComponent {
         if(evt) evt.preventDefault();
         this.setState({ openItemId: id })
     };
-    closeItem = () => {
+    toggleOpenItem = id => evt => {
+        if(evt) evt.preventDefault();
         this.setState({
-            openItemId: null
+            openItemId: id == this.state.openItemId ? null : id
         });
-        console.log('111', this.state.openItemId); //маркер отработки ф-ции (показывает еще старый openItemId, т.к. setState - асинхронный метод и еще не изменил openItemId)
     };
 
     isOpenItem = (id) => this.state.openItemId == id;
@@ -24,7 +24,7 @@ export default (Component) => class decoratedOneOpen extends ReactComponent {
             nextState.openItemId = null;
             //this.closeItem();
         }
-        //console.log(nextState, this.state);
+        //console.log('1', nextState, this.state);
         return this.next = nextState;
     };
 
@@ -33,7 +33,7 @@ export default (Component) => class decoratedOneOpen extends ReactComponent {
         //console.log(this.next);
         return <Component {...this.props}
                           openItem = {this.openItem}
-                          closeItem = {this.closeItem}
+                          toggleOpenItem = {this.toggleOpenItem}
                           isOpenItem = {this.isOpenItem}/>
     }
 }
