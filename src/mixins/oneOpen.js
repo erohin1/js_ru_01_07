@@ -1,13 +1,19 @@
 export default {
     getInitialState () {
+        //this.props
         return {
-            openArticleId: null
+            openItemId: null
         }
     },
-    openArticle(id) {
-        return evt =>
+    toggleOpenItem(id) {
+        return evt => {
+            if(evt) evt.preventDefault();
             this.setState({
-                openArticleId: id
+                openItemId: id == this.state.openItemId ? null : id
             })
+        }
+    },
+    isOpenItem(id) {
+        return this.state.openItemId == id;
     }
 }

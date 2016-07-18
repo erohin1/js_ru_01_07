@@ -1,6 +1,6 @@
 import { articles } from './fixtures'
-import ArticleList from './ArticleList'
-import Article from './Article'
+import {ArticleList} from './ArticleListOld'
+//import Article from './Article'
 import React from 'react'
 import { render } from 'react-dom'
 
