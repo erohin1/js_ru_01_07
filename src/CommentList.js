@@ -8,7 +8,7 @@ import toggleOpen from './decorators/toggleOpen';
 class CommentList extends Component {
 
     componentWillMount() {
-        console.log('--', this.props);
+        console.log('--mount', this.props);
     }
     componentDidMount() {
         console.log('--', 'mounted', this.refs.toggler);

@@ -9,7 +9,7 @@ export default (Component) => class DecoratedComponent extends React.Component {
         console.log('---WillReceive');
     }
     componentWillUpdate(nextProps, nextState) {
-        console.log('---WillUpdate', nextProps, nextState);
+        console.log('---WillUpdate', nextProps, nextState, this.state);
     }
 
     toggleComment = (evt) => {

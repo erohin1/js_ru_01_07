@@ -7,10 +7,11 @@ class Article extends Component {
         article: PropTypes.object.isRequired
     };
 
+
     render() {
         const {article, isOpen, openArticle} = this.props;
 
-        const body = isOpen ? <section>{ article.text }
+        const body = isOpen(article.id) ? <section>{ article.text }
             <CommentList comments = {article.comments} /></section> : null;
 
 
